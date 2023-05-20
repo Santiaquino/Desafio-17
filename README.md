@@ -7,6 +7,7 @@
 
 - Primero en una consola se debe ejecutar "npm run start" como lo dice abajo para el inicio de la aplicacion
 - Luego en otra consola se debe ejecutar "npx mocha test/archivo.test" (se puede ejecutar cualquiera de los 3 archivos)
+- Tambien en la segunda consola se puede ejecutar "npx mocha test" para que se ejecuten todos los tests directamente
 
 ### cosas a tener en cuenta:
 

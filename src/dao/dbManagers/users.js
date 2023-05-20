@@ -1,4 +1,4 @@
-import { usersModel } from '../models/users.model.js';
+import { usersModel } from "../models/users.model.js";
 
 export default class UsersManager {
   constructor() {
@@ -9,8 +9,7 @@ export default class UsersManager {
     try {
       const users = await usersModel.find();
       return users;
-    }
-    catch (err) {
+    } catch (err) {
       throw new Error(err);
     }
   };
@@ -20,18 +19,19 @@ export default class UsersManager {
       const userId = await usersModel.findOne({ _id: id });
       const userEmail = await usersModel.findOne({ email: email });
       return userId || userEmail;
-    }
-    catch (err) {
+    } catch (err) {
       throw new Error(err);
     }
   };
 
   updateUser = async (email, value) => {
     try {
-      const user = await usersModel.updateOne({ email: email }, { $set: value });
+      const user = await usersModel.updateOne(
+        { email: email },
+        { $set: value }
+      );
       return user;
-    }
-    catch (err) {
+    } catch (err) {
       throw new Error(err);
     }
   };
@@ -40,8 +40,7 @@ export default class UsersManager {
     try {
       const user = await usersModel.updateOne({ _id: id }, { $set: value });
       return user;
-    }
-    catch (err) {
+    } catch (err) {
       throw new Error(err);
     }
   };
@@ -50,8 +49,7 @@ export default class UsersManager {
     try {
       const result = await usersModel.create(obj);
       return result;
-    }
-    catch (err) {
+    } catch (err) {
       throw new Error(err);
     }
   };
@@ -59,9 +57,18 @@ export default class UsersManager {
   changePassword = async (email, newPass) => {
     try {
       const result = await this.updateUser(email, { password: newPass });
-      return result
+      return result;
+    } catch (err) {
+      throw new Error(err);
     }
-    catch (err) {
+  };
+
+  deleteUser = async (id, email) => {
+    try {
+      const userID = await usersModel.deleteOne({ _id: id });
+      const userEmail = await usersModel.deleteOne({ email: email });
+      return userID || userEmail;
+    } catch (err) {
       throw new Error(err);
     }
   };

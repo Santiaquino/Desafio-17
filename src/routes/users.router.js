@@ -19,4 +19,8 @@ router.put("/premium/:uid", async (req, res, next) => {
   controller.changeRole(req, res, next);
 });
 
+router.delete("/:uid", async (req, res, next) => {
+  controller.deleteUser(req, res, next);
+});
+
 export default router;

@@ -18,7 +18,11 @@ const register = async (req, res) => {
       await insUsers.updateUser(req.user.email, { role: "admin" });
     }
 
-    res.json({ status: "success!", message: "Usuario registrado" });
+    res.json({
+      status: "success!",
+      message: "Usuario registrado",
+      payload: req.user,
+    });
   } catch (err) {
     throw new Error(err);
   }
@@ -138,4 +142,4 @@ export default {
   restore,
   current,
   changePassword,
-};
+};

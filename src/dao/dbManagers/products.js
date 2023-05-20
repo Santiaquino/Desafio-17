@@ -35,7 +35,6 @@ export default class ProductManager {
   updateProduct = async (id, obj) => {
     try {
       const result = await productsModel.updateOne({ _id: id }, { $set: obj });
-      console.log(result);
       if (result.acknowledged === false) return false;
       return result;
     } catch (err) {

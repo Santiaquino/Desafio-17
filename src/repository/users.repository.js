@@ -1,7 +1,7 @@
 export default class UsersRepository {
   constructor(dao) {
     this.dao = dao;
-  };
+  }
 
   getAll = async () => {
     let result = await this.dao.getAll();
@@ -31,5 +31,10 @@ export default class UsersRepository {
   changePassword = async (email, newPass) => {
     let result = await this.dao.changePassword(email, newPass);
     return result;
-  }
+  };
+
+  deleteUser = async (id, email) => {
+    let result = await this.dao.deleteUser(id, email);
+    return result;
+  };
 }

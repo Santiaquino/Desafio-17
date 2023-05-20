@@ -11,9 +11,9 @@ describe("Test para los carritos", () => {
     mongoose.connect(config.mongo);
   });
 
-  beforeEach(function () {
-    mongoose.connection.collection("carts").deleteMany({});
-  });
+  // beforeEach(function () {
+  //   mongoose.connection.collection("carts").deleteMany({});
+  // });
 
   after(function () {
     mongoose.connection.close();
@@ -22,7 +22,7 @@ describe("Test para los carritos", () => {
 
   it("Test para el guardado de producto de un carrito", async () => {
     const response = await requester.post(
-      "/api/carts/6465602e31db134c2414ba9b/products/645a6bef61b49237fd4b25f1"
+      "/api/carts/64678fe24ff1dd6cbfd4a5c2/products/646790017de25b4a200f2639"
     );
 
     expect(response._body).to.have.property("status").equal("success!");
@@ -31,7 +31,7 @@ describe("Test para los carritos", () => {
   it("Test para actualizar la cantidad de un producto en un carrito", async () => {
     const response = await requester
       .put(
-        "/api/carts/6465602e31db134c2414ba9b/products/645a6bef61b49237fd4b25f1"
+        "/api/carts/64678fe24ff1dd6cbfd4a5c2/products/646790017de25b4a200f2639"
       )
       .send({ quantity: 3 });
 
@@ -40,7 +40,7 @@ describe("Test para los carritos", () => {
 
   it("Test para eliminar un producto de un carrito", async () => {
     const response = await requester.delete(
-      "/api/carts/6465602e31db134c2414ba9b/products/645a6bef61b49237fd4b25f1"
+      "/api/carts/64678fe24ff1dd6cbfd4a5c2/products/646790017de25b4a200f2639"
     );
 
     expect(response._body).to.have.property("status").equal("success!");

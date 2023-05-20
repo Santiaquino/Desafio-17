@@ -37,7 +37,13 @@ const createUser = async (req, res, next) => {
       CustomError.createError({
         name: "Error al guardar el usuario",
         message: "Ingrese todos los campos",
-        cause: generateUserErrorInfo({ first_name, last_name, email, password, age }),
+        cause: generateUserErrorInfo({
+          first_name,
+          last_name,
+          email,
+          password,
+          age,
+        }),
         code: enumErrors.INVALID_TYPES_ERROR,
       });
     }
@@ -131,9 +137,23 @@ const changeRole = async (req, res, next) => {
   }
 };
 
+const deleteUser = async (req, res, next) => {
+  try {
+    const { uid } = req.params;
+    const user = await userService.deleteUser(uid, null);
+
+    if (!user) return res.json({ status: "Error", error: "Usuario no existe" });
+
+    res.json({ status: "Success", message: "Usuario eliminado correctamente" });
+  } catch (err) {
+    next(err);
+  }
+};
+
 export default {
   getAll,
   createUser,
   updates,
   changeRole,
+  deleteUser,
 };
